@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "363355444622",
+    "project_id": "bookmyslot-50bd9",
+    "storage_bucket": "bookmyslot-50bd9.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:363355444622:android:1396f4ab3e0001136140df",
+        "android_client_info": {
+          "package_name": "com.example.bt"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCbTxn27XLnfcT9N2-YjSDXkJpdo-deDWE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
