@@ -3,7 +3,15 @@ allprojects {
         google()
         mavenCentral()
     }
+
+    configurations.all {
+        resolutionStrategy {
+            force 'org.jetbrains.kotlin:kotlin-stdlib:1.8.22' // Replace with the desired version
+            force 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.22' // Ensure the same version for jdk8
+        }
+    }
 }
+
 
 rootProject.buildDir = '../build'
 subprojects {
@@ -16,3 +24,4 @@ subprojects {
 tasks.register("clean", Delete) {
     delete rootProject.buildDir
 }
+

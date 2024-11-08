@@ -8,6 +8,8 @@ import 'package:bt/views/signup_view/signup_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../home_view/home.dart';
+
 class LoginView extends StatelessWidget {
   const LoginView({Key? key}) : super(key: key);
 
@@ -48,7 +50,7 @@ class LoginView extends StatelessWidget {
                       ),
                       20.heightBox,
                        CustomButton(buttonText: AppStrings.login, onTap: () {
-                         Get.to(()=>HomeView());
+                         Get.to(()=> const Home());
                        },),
                       20.heightBox,
                   

@@ -26,4 +26,10 @@ class AppStrings{
   static const String Appliances = "Appliances";
   static const String Upgrades = "Upgrades";
   static const String Repairs = "Repairs";
+  static const String category ="Category";
+  static const String Electrician = "Electrician Login";
+  static const String settings = "Settings";
+  static const String changePassword ="Change Password";
+  static const String termsConditions = "Terms & Conditions";
+  static const String signout = "Signout";
 }
