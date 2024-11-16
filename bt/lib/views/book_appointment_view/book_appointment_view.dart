@@ -3,50 +3,63 @@ import 'package:bt/res/components/custom_button.dart';
 import 'package:bt/res/components/custom_textfield.dart';
 import 'package:get/get.dart';
 
+import '../../controllers/appointment_controller.dart';
+
 class BookAppointmentView extends StatelessWidget {
-  const BookAppointmentView({Key? key}) : super(key: key);
+  final String ElecId;
+  final String ElecName;
+  const BookAppointmentView({super.key,required this.ElecId,required this.ElecName});
 
   @override
   Widget build(BuildContext context) {
+    var controller = Get.put(AppointmentController());
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.bluecolor,
-        title: AppStyles.bold(title: "Electrician Name",color:AppColors.whitecolor,size: AppSizes.size18 ),
+        title: AppStyles.bold(title: ElecName,color:AppColors.whitecolor,size: AppSizes.size18 ),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10.0),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               AppStyles.bold(title: "Select appointment day"),
               5.heightBox,
-              const CustomTextfield(hint: "Select Date"),
+               CustomTextfield(hint: "Select Day",textController: controller.appDayController,),
               10.heightBox,
               AppStyles.bold(title: "Select appointment time"),
               5.heightBox,
-               const CustomTextfield(hint: "Select time"),
+               CustomTextfield(hint: "Select time",textController: controller.appTimeController,),
               20.heightBox,
               AppStyles.bold(title: "Mobile Number"),
               5.heightBox,
-              const CustomTextfield(hint: "Enter Your MObile number"),
+               CustomTextfield(hint: "Enter Your MObile number",textController: controller.appMobileController,),
              10.heightBox,
               AppStyles.bold(title: "Fullname"),
               5.heightBox,
-              const CustomTextfield(hint: "Enter your Name"),
+               CustomTextfield(hint: "Enter your Name",textController: controller.appNameController,),
               10.heightBox,
               AppStyles.bold(title: "Message:"),
               5.heightBox,
-              const CustomTextfield(hint: "Enter your message"),
+               CustomTextfield(hint: "Enter your message",textController: controller.appMessageController,),
             ],
           ),
         ),
       ),
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.all(12.0),
-        child: CustomButton(
-          buttonText: "Book an appointment",
-          onTap: (){},
+      bottomNavigationBar:Obx(()=> Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: controller.isLoading.value ?
+          const Center(
+            child: CircularProgressIndicator(),
+          ):
+          CustomButton(
+            buttonText: "Book an appointment",
+            onTap: () async{
+              await controller.bookAppointment(ElecId, ElecName,context);
+
+            },
+          ),
         ),
       ),
     );

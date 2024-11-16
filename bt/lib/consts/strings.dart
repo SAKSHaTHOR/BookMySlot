@@ -12,7 +12,7 @@ class AppStrings{
   static const String password = "Password";
   static const String passwordHint = "Enter your password here...";
   static const String fullname = "Full Name";
-  static const String search = "Search Electrician";
+  static const String search = "Search electrician";
   static const String fullnameHint = "Enter your name here...";
   static const String confirmPassword = "Confirm Password";
   static const String forgetPassword = "Forget Password?";

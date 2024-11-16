@@ -1,15 +1,21 @@
 import 'package:bt/consts/consts.dart';
+import 'package:bt/controllers/appointment_controller.dart';
 import 'package:bt/res/components/custom_button.dart';
 import 'package:bt/views/book_appointment_view/book_appointment_view.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
 class ElectricianProfileView extends StatelessWidget {
-  const ElectricianProfileView({Key? key}) : super(key: key);
+  final DocumentSnapshot doc;
+  const ElectricianProfileView({ super.key , required this.doc});
 
   @override
   Widget build(BuildContext context) {
+
+
+
     return Scaffold(
       backgroundColor: AppColors.bgDarkColor,
         appBar: AppBar(
@@ -42,16 +48,16 @@ class ElectricianProfileView extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                           AppStyles.bold(title: "Electrician Name",color:AppColors.textcolor,size: AppSizes.size14 ),
+                           AppStyles.bold(title: doc['ElecName'],color:AppColors.textcolor,size: AppSizes.size14 ),
                           AppStyles.bold(
-                              title: "Category",color:AppColors.textcolor.withOpacity(0.5),size: AppSizes.size12 ),
+                              title: doc['ElecCategory'],color:AppColors.textcolor.withOpacity(0.5),size: AppSizes.size12 ),
                            const Spacer(),
                           VxRating(
                                selectionColor: AppColors.yellowColor,
                                 onRatingUpdate: (value){},
                               maxRating: 5,
                                 count: 5,
-                                value: 4,
+                                value: double.parse(doc['ElecRating'].toString()),
                                 stepInt: true,
                             )
                         ],
@@ -73,7 +79,7 @@ class ElectricianProfileView extends StatelessWidget {
                   children: [
                     ListTile(
                         title: AppStyles.bold(title: "Phone Number",color: AppColors.textcolor),
-                        subtitle: AppStyles.normal(title: "+9994933921",color: AppColors.textcolor.withOpacity(0.5),size:AppSizes.size12 ),
+                        subtitle: AppStyles.normal(title: doc['ElecPhone'],color: AppColors.textcolor.withOpacity(0.5),size:AppSizes.size12 ),
                         trailing: Container(
                             width: 50,
                             padding: EdgeInsets.all(8),
@@ -89,7 +95,7 @@ class ElectricianProfileView extends StatelessWidget {
                     AppStyles.bold(title: "About",color: AppColors.textcolor,size: AppSizes.size16),
                     5.heightBox,
                     AppStyles.normal(
-                        title: "This is the about section of a Electrician",
+                        title: doc['ElecAbout'],
                         color: AppColors.textcolor.withOpacity(0.5),
                         size: AppSizes.size12
                     ),
@@ -97,7 +103,7 @@ class ElectricianProfileView extends StatelessWidget {
                     AppStyles.bold(title: "Address",color: AppColors.textcolor,size: AppSizes.size16),
                     5.heightBox,
                     AppStyles.normal(
-                        title: "Address of the Electrician",
+                        title: doc['ElecAddress'],
                         color: AppColors.textcolor.withOpacity(0.5),
                         size: AppSizes.size12
                     ),
@@ -105,7 +111,7 @@ class ElectricianProfileView extends StatelessWidget {
                     AppStyles.bold(title: "Working Time",color: AppColors.textcolor,size: AppSizes.size16),
                     5.heightBox,
                     AppStyles.normal(
-                        title: "9:00 AM to 12:00 PM",
+                        title: doc['ElecTiming'],
                         color: AppColors.textcolor.withOpacity(0.5),
                         size: AppSizes.size12
                     ),
@@ -113,7 +119,7 @@ class ElectricianProfileView extends StatelessWidget {
                     AppStyles.bold(title: "Services",color: AppColors.textcolor,size: AppSizes.size16),
                     5.heightBox,
                     AppStyles.normal(
-                        title: "This is the service section of a doctor",
+                        title:doc['ElecServices'],
                         color: AppColors.textcolor.withOpacity(0.5),
                         size: AppSizes.size12
                     ),
@@ -129,7 +135,7 @@ class ElectricianProfileView extends StatelessWidget {
         child: CustomButton(
           buttonText: "Book an appointment",
           onTap: (){
-            Get.to(()=> const BookAppointmentView());
+            Get.to(()=> BookAppointmentView(ElecId:doc['ElecId'],ElecName:doc['ElecName'],));
           },
         ),
       ),

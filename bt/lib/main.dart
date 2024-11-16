@@ -1,5 +1,6 @@
 import 'package:bt/consts/consts.dart';
 import 'package:bt/firebase_options.dart';
+import 'package:bt/res/components/waiting_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:bt/views/login_view/login_view.dart';
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       theme: ThemeData(fontFamily: AppFonts.nunito),
       debugShowCheckedModeBanner: false,
-      home: LoginView(),
+      home: WaitingScreen(), 
     );
   }
 }
