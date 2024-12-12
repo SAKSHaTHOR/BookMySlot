@@ -59,7 +59,7 @@ class _LoginViewState extends State<LoginView> {
                                 isElectrician = newValue;
                         });
                       },
-                      title: "Sign in as a doctor".text.make(),),
+                      title: "Sign in as a Electrician".text.make(),),
                       20.heightBox,
                       Align(
                         alignment: Alignment.centerRight,

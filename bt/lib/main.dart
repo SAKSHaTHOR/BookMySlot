@@ -5,14 +5,25 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:bt/views/login_view/login_view.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-
-void main() async{
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
-  runApp(const MyApp());
+
+  try {
+    // Load environment variables from the .env file
+    await dotenv.load(fileName: ".env");
+
+
+    // Initialize Firebase
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+
+    runApp(const MyApp());
+  } catch (e) {
+    print("Error during app initialization: $e");
+  }
 }
 
 class MyApp extends StatelessWidget {
@@ -23,7 +34,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       theme: ThemeData(fontFamily: AppFonts.nunito),
       debugShowCheckedModeBanner: false,
-      home: WaitingScreen(), 
+      home: WaitingScreen(),
     );
   }
 }
